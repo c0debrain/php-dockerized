@@ -7,6 +7,7 @@ FROM nginx
 ################################################################################
 # Build instructions
 ################################################################################
+# run docker-compose build
 
 # Remove default nginx configs.
 RUN rm -f /etc/nginx/conf.d/*
@@ -51,6 +52,7 @@ RUN apt-get update && apt-get install -y hhvm
 COPY conf/nginx.conf /etc/nginx/
 COPY conf/supervisord.conf /etc/supervisor/conf.d/
 COPY conf/php.ini /etc/php5/fpm/conf.d/40-custom.ini
+COPY conf/viator-profile.ini /etc/php5/fpm/conf.d/50-viator-profile.ini
 
 ################################################################################
 # Volumes
