@@ -1,0 +1,20 @@
+version: '2.1'
+services:
+
+  front:
+    build: .
+    ports:
+      - "8080:80"
+      - "444:443"
+      - "9000:9000"
+    volumes:
+      #- ./www:/var/www
+      - ${VIATOR_CODE}/m-viator-com/mobile/src/main/webapp/:/var/www
+      - ./sites:/etc/nginx/conf.d
+      - ./logs:/var/log/supervisor
+    environment:
+        - TEAM_ENVIRONMENT=${TEAM_ENVIRONMENT}
+        - VM_NUM=${VM_NUM}
+        - TZ=Australia/Sydney
+        - REMOTE_CONNECT=${XDEBUG_REMOTE_CONNECT:-0}
+    dns: 10.135.1.117
